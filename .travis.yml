@@ -1,19 +1,24 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
 branches:
   only:
-    - gh-pages
+  - gh-pages
 before_script:
-  - npm install -g bower
-  - npm install -g gulp
-  - npm install phantomjs
-  - npm install -g karma
-  - bower install
-  - gulp build
-  - gulp style
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3
-  - rackup  
-  - sleep 3
+- npm install -g bower
+- npm install -g gulp
+- npm install phantomjs
+- npm install -g karma
+- bower install
+- gulp build
+- gulp style
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- rackup
+- sleep 3
+after_success:
+- bash deploy.sh
+env:
+  global:
+    secure: DsYpU2HIvlSOqT579e2gRI5bL891dptEGlg6V3Qrp1eQ0w7NAvtKly41H4mNxBIwxuK2C+cOI/kH2loAjm9pPOOofBvN97lesGZ34RMsAut0quuwabt3C9PWKEs+//qNrzzxy3Sn08ui7wApvxkyXpiYgiQUuguv60309nzzksPSY9dW0U8b996pdEcer+JFRCp2UBFNPGeIQtF7zbMrbaCJx0wL9xZREkDe35vBnk6iU6xocBPI+3rqWESI7GBOYQDVPnw3AQ4RvQzScXVg6Ttzif4JBVbS7yL+UaT7dIJSkL5Q5Lo+vADtQlT+FibklIu3qLhgso212LAFLQ/OIgRO2fm2X/Aphkib3FlzVcJNmPobHKpcrul967s4a5cYR1jgloBCHCPuJOdneBmnobWldRb+lNXLunwipHt7x0gjjkV9nFbFJ29Ec5xeZ/FmJG9g8l1A9MuTAAK32YP34cCqYc2RAFue4NiopjnaUyBbBPCc8BZVxD6McZQzs94QdU+tDBhzqvfNOv9KJI4rPULr2KeOKTGrKbKVTIbAxoiSrndAyeWXIcuG6dyUvTUASzjmCq4qL2z6rvdtyyXaDltAMotkuTmnUZ9W9OY+fva4PBW0uy5uXloI1xBfIudt0UAc9bsyaOroW3/QGfG+IjaQ7zMBIKQj2NDp0DRgdAk=
