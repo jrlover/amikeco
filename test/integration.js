@@ -13,9 +13,9 @@ describe('Simple Test', function() {
               console.log("Looking for email field");
               return this.driver.findElement(selenium.By.id('email')).isDisplayed();
           }, 5000, 'Page did not load within 5 seconds');
-          driver.findElement(webdriver.By.id("email")).sendKeys('test@abc.de');
-          driver.findElement(webdriver.By.id("user_password")).sendKeys('pword');
-          return driver.findElement(webdriver.By.name("submit")).click();
+          driver.findElement(selenium.By.id("email")).sendKeys('test@abc.de');
+          driver.findElement(selenium.By.id("user_password")).sendKeys('pword');
+          return driver.findElement(selenium.By.name("submit")).click();
       }).then(done);
   });
 });
