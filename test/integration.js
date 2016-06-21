@@ -11,7 +11,7 @@ describe('Simple Test', function() {
       then(function () {
           driver.wait(function () {
               console.log("Looking for email field");
-              return this.driver.findElement(selenium.By.id('email')).isDisplayed();
+              return driver.findElement(selenium.By.id('email')).isDisplayed();
           }, 5000, 'Page did not load within 5 seconds');
           driver.findElement(selenium.By.id("email")).sendKeys('test@abc.de');
           driver.findElement(selenium.By.id("user_password")).sendKeys('pword');
