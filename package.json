@@ -4,7 +4,7 @@
   "description": "An example module to illustrate the usage of a package.json",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --browsers Firefox --single-run"
+    "test": "karma start karma.config.js --browsers Firefox --single-run"
   },
   "keywords": [],
   "author": "Joerg Reichert",
