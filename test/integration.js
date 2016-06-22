@@ -1,21 +1,49 @@
-var selenium = require('selenium-webdriver');
+var client = require('webdriverjs').remote({
+    desiredCapabilities: {
+        // You may choose other browsers
+        // http://code.google.com/p/selenium/wiki/DesiredCapabilities
+        browserName: 'phantomjs'
+    },
+    // webdriverjs has a lot of output which is generally useless
+    // However, if anything goes wrong, remove this to see more details
+    logLevel: 'silent'
+});
 
-describe('Simple Test', function() {
-  this.timeout(10000);
+client.init();
 
-  it('Should be the expected label', function(done) {
-    var driver = new selenium.Builder().
-      withCapabilities(selenium.Capabilities.firefox()).
-      build();
-    driver.get('http://localhost:3000').
-      then(function () {
-          driver.wait(function () {
-              console.log("Looking for email field");
-              return driver.findElement(selenium.By.id('email')).isDisplayed();
-          }, 5000, 'Page did not load within 5 seconds');
-          driver.findElement(selenium.By.id("email")).sendKeys('test@abc.de');
-          driver.findElement(selenium.By.id("user_password")).sendKeys('pword');
-          return driver.findElement(selenium.By.name("submit")).click();
-      }).then(done);
-  });
+client.url('http://example.com/')
+client.getTitle(function(title){
+    console.log('Title is', title);
+});
+client.setValue('#field', 'value');
+client.submitForm();
+client.end();
+
+describe('Test example.com', function(){
+    before(function(done) {
+        client.init().url('http://example.com', done);
+    });
+
+    describe('Check homepage', function(){
+        it('should see the correct title', function(done) {
+            client.getTitle(function(title){
+                expect(title).to.have.string('Example Domain');
+                done();
+            });
+        });
+
+        it('should see the body', function(done) {
+            client.getText('p', function(p){
+                expect(title).to.have.string(
+                    'for illustrative examples in documents.'
+                );
+                done();
+            })
+        });
+    });
+
+    after(function(done) {
+        client.end();
+        done();
+    });
 });
