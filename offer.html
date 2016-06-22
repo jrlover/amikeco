@@ -11,11 +11,31 @@
     <!--link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"-->
     <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
     <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="icon-fonts/elusive-icons-2.0.0/css/elusive-icons.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/ionicons-1.5.2/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/map-icons-2.1.0/css/map-icons.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/material-design-1.1.1/css/material-design-iconic-font.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/octicons-2.1.2/css/octicons.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/typicons-2.0.6/css/typicons.min.css"/>
+    <link rel="stylesheet" href="icon-fonts/weather-icons-1.2.0/css/weather-icons.min.css"/>
+    <link rel="stylesheet" href="bootstrap-iconpicker/css/bootstrap-iconpicker.min.css"/>
+    <link rel="stylesheet" href="eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="bootstrap-tagsinput/bootstrap-tagsinput.css" />
+
     <!-- Inline CSS based on choices in "Settings" tab -->
     <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/l20n/1.0.2/l20n.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-iconpicker/js/iconset/iconset-all.min.js"></script>
+    <script type="text/javascript" src="bootstrap-iconpicker/js/bootstrap-iconpicker.js"></script>
+    <script type="text/javascript" src="moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -28,7 +48,7 @@
      <div class="container-fluid">
       <div class="row">
        <div class="col-md-6 col-sm-6 col-xs-12">
-        <form method="get" action="./activity.html">
+        <form id="activityForm" method="get" action="./activity.html">
          <div class="form-group ">
           <label class="control-label " for="activityTitle">
            <span data-l10n-id="activityOfferTitleName">Title</span>
@@ -40,52 +60,17 @@
            <span data-l10n-id="activityOfferCategory">Category</span>
           </label>
           <div class=" ">
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="cycling"/>
-             <span data-l10n-id="activityOfferCategoryCycling">cycling</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="hockey"/>
-             <span data-l10n-id="activityOfferCategoryHockey">hockey</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="eating"/>
-             <span data-l10n-id="activityOfferCategoryEating">eating</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="coffee"/>
-             <span data-l10n-id="activityOfferCategoryCoffee">coffee</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="hiking"/>
-             <span data-l10n-id="activityOfferCategoryHiking">hiking</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="category" type="checkbox" value="cinema"/>
-             <span data-l10n-id="activityOfferCategoryCinema">cinema</span>
-            </label>
-           </div>
+              <div class="row text-center">
+                  <div class="col-md-1">
+                      <div id="category_selection"></div>
+                  </div>
+              </div>
           </div>
-         </div>
          <div class="form-group ">
           <label class="control-label " for="tags">
            <span data-l10n-id="activityOfferTags">Tags</span>
           </label>
-          <input class="form-control" id="tags" name="tags" type="text"/>
-          <span class="help-block" id="hint_tags">
-           <span data-l10n-id="commaSeparatedList">comma separated list</span>
-          </span>
+          <input type="text" name="tags" class="form-control" data-role="tagsinput" value="example" />
          </div>
          <div class="form-group ">
           <label class="control-label " for="location">
@@ -94,59 +79,28 @@
           <input class="form-control" id="location" name="location" type="text"/>
          </div>
          <div class="form-group ">
-          <label class="control-label ">
-           <span data-l10n-id="activityOfferPreferedDays">Preferred days</span>
-          </label>
-          <div class=" ">
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Monday"/>
-             <span data-l10n-id="activityOfferPreferedDaysMonday">Monday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Tuesday"/>
-             <span data-l10n-id="activityOfferPreferedDaysTuesday">Tuesday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Wednesday"/>
-             <span data-l10n-id="activityOfferPreferedDaysWednesday">Wednesday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Thursday"/>
-             <span data-l10n-id="activityOfferPreferedDaysThursday">Thursday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Friday"/>
-             <span data-l10n-id="activityOfferPreferedDaysFriday">Friday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Saturday"/>
-             <span data-l10n-id="activityOfferPreferedDaysSaturday">Saturday</span>
-            </label>
-           </div>
-           <div class="checkbox">
-            <label class="checkbox">
-             <input name="preferedDays" type="checkbox" value="Sunday"/>
-             <span data-l10n-id="activityOfferPreferedDaysSunday">Sunday</span>
-            </label>
-           </div>
+           <label class="control-label " for="preferredTime">
+            <span data-l10n-id="activityOfferPreferedTime">Preferred time</span>
+           </label>
+          <div class="container">
+              <div class="row">
+                  <div class='col-sm-6'>
+                      <div class="form-group">
+                          <div class='input-group date' id='datetimepicker1'>
+                              <input type='text' class="form-control" id="preferredTime" name="preferredTime" />
+                              <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+                  <script type="text/javascript">
+                      $(function () {
+                          $('#datetimepicker1').datetimepicker();
+                      });
+                  </script>
+              </div>
           </div>
-         </div>
-         <div class="form-group ">
-          <label class="control-label " for="preferredTime">
-           <span data-l10n-id="activityOfferPreferedTime">Preferred time</span>
-          </label>
-          <input class="form-control" id="preferredTime" name="preferredTime" type="text"/>
          </div>
          <div class="form-group ">
           <label class="control-label " for="description">
@@ -166,5 +120,32 @@
       </div>
      </div>
     </div>
+
+        <script type="text/javascript">
+
+            $(function(){
+
+                $('#category_selection').iconpicker({
+                    arrowClass: 'btn-danger',
+                    arrowPrevIconClass: 'glyphicon glyphicon-chevron-left',
+                    arrowNextIconClass: 'glyphicon glyphicon-chevron-right',
+                    cols: 10,
+                    footer: true,
+                    header: true,
+                    icon: 'fa-bomb',
+                    iconset: 'mapicon',
+                    labelHeader: '{0} of {1} pages',
+                    labelFooter: '{0} - {1} of {2} icons',
+                    placement: 'bottom',
+                    rows: 5,
+                    search: true,
+                    searchText: 'Search',
+                    selectedClass: 'btn-success',
+                    unselectedClass: ''
+                });
+            });
+
+        </script>
+
   </body>
 </html>
