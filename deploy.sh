@@ -1,5 +1,6 @@
 #!/bin/bash
 ( cd public
+ rm -rf **/src
  git init
  git config user.name "Travis-CI"
  git config user.email "travis@example.com"

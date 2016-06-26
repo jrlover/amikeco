@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Joerg Reichert",
-  "license": "LGPL",
+  "license": "LGPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/CodeforLeipzig/amikeco.git"
@@ -23,9 +23,9 @@
     "karma": "^0.13.22",
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.0.1",
+    "karma-ng-scenario": "^1.0.0",
     "minimatch": "^3.0.2",
     "mocha": "^2.5.3",
-    "pug": "^2.0.0-beta3",
     "request": "^2.72.0",
     "selenium-webdriver": "^2.53.2"
   }
