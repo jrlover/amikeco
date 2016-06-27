@@ -1,7 +1,14 @@
 module.exports = function(config) {
   config.set({
+    basePath: '',
     frameworks: ['ng-scenario'],
-    browsers: ['Firefox', 'FirefoxDeveloper', 'FirefoxAurora', 'FirefoxNightly'],
+    browsers: ['chrome_without_security', 'Chrome'],
+    customLaunchers: {
+        chrome_without_security: {
+            base: 'Chrome',
+            flags: ['--disable-web-security']
+        }
+    },
     reporters: ['progress'],
     urlRoot : '/__karma__/',
     proxies : {
@@ -11,9 +18,11 @@ module.exports = function(config) {
     runnerPort: 9100,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
+    autoWatch: false,
     files: [
-      'test/test.js'
+      'test/test.js',
+      'public/jquery/dist/jquery.js',
+      'public/index.html'
     ],
     singleRun: false,
     browserNoActivityTimeout: 45000

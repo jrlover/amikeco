@@ -4,7 +4,9 @@
   "description": "An example module to illustrate the usage of a package.json",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.config.js --browsers Firefox --single-run"
+    "test": "npm run integration-test && npm run unit-test",
+    "unit-test": "karma start karma.config.js --browsers chrome_without_security --single-run",
+    "integration-test": "gulp default"
   },
   "keywords": [],
   "author": "Joerg Reichert",
@@ -19,14 +21,25 @@
   "homepage": "https://github.com/CodeforLeipzig/amikeco",
   "devDependencies": {
     "chai": "^3.5.0",
+    "chromedriver": "^2.21.2",
     "express": "^4.14.0",
+    "firefox-profile": "^0.4.0",
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "^2.0.1",
     "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^1.0.1",
+    "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.0.4",
     "karma-ng-scenario": "^1.0.0",
     "minimatch": "^3.0.2",
     "mocha": "^2.5.3",
     "request": "^2.72.0",
-    "selenium-webdriver": "^2.53.2"
+    "selenium-standalone": "^5.1.1",
+    "selenium-webdriver": "^2.53.2",
+    "wdio-firefox-profile-service": "0.0.1",
+    "wdio-junit-reporter": "^0.1.0",
+    "wdio-mocha-framework": "^0.3.4",
+    "webdriverio": "^4.1.1"
   }
 }
