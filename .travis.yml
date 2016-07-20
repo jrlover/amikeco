@@ -13,10 +13,12 @@ branches:
   only:
   - master
 before_install:
-  - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-  - export PATH=$PWD/travis-phantomjs:$PATH
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- sudo rm -rf /usr/local/phantomjs/bin/phantomjs
+- sudo mv phantomjs /usr/local/phantomjs/bin/phantomjs
 before_script:
+- export PHANTOMJS_BIN=/usr/local/phantomjs/bin/phantomjs
 - export DISPLAY=:99.0
 - export CHROME_BIN=chromium-browser
 - sh -e /etc/init.d/xvfb start
