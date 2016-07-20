@@ -9,13 +9,15 @@ describe('login page', function() {
   });
 
   it('has the correct page title', function() {
+//	browser.desiredCapabilities['chromeOptions'] = {
+//		'prefs': {
+//          'intl.accept_languages': 'en'
+//	    }
+//    }
+//	browser.refresh();
+//	browser.pause(3000);
     assert(browser.isVisible("h1[data-l10n-id]"));
-    assert.equal(browser.getText('h1[data-l10n-id]'), 'Anmeldung');
-  });
-  
-  it('has the correct page title', function() {
-    assert(browser.isVisible("h1[data-l10n-id]"));
-    assert.equal(browser.getText('h1[data-l10n-id]'), 'Anmeldung');
+    assert.equal(browser.getText('h1[data-l10n-id]'), 'Login');
   });
 
 });

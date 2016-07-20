@@ -6,11 +6,11 @@ module.exports = function(config) {
     customLaunchers: {
         chrome_without_security: {
             base: 'Chrome',
-            flags: ['--disable-web-security']
+            flags: ['--disable-web-security', '--lang', 'en']
         },
         chrome_travis_ci: {
             base: 'Chrome',
-            flags: ['--no-sandbox']
+            flags: ['--no-sandbox', '--lang', 'en']
         },
     },
     reporters: ['progress'],
