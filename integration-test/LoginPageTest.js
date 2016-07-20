@@ -12,4 +12,10 @@ describe('login page', function() {
     assert(browser.isVisible("h1[data-l10n-id]"));
     assert.equal(browser.getText('h1[data-l10n-id]'), 'Anmeldung');
   });
+  
+  it('has the correct page title', function() {
+    assert(browser.isVisible("h1[data-l10n-id]"));
+    assert.equal(browser.getText('h1[data-l10n-id]'), 'Anmeldung');
+  });
+
 });
