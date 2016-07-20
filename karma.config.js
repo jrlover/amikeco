@@ -1,5 +1,5 @@
 module.exports = function(config) {
-  config.set({
+  const configuration = {
     basePath: '',
     frameworks: ['ng-scenario'],
     browsers: ['chrome_without_security', 'Chrome'],
@@ -7,7 +7,11 @@ module.exports = function(config) {
         chrome_without_security: {
             base: 'Chrome',
             flags: ['--disable-web-security']
-        }
+        },
+        chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        },
     },
     reporters: ['progress'],
     urlRoot : '/__karma__/',
@@ -26,5 +30,9 @@ module.exports = function(config) {
     ],
     singleRun: false,
     browserNoActivityTimeout: 45000
-  });
+  };
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['chrome_travis_ci'];
+  }
+  config.set(configuration);
 };
